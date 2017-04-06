@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Subdomain.Infrastructure
 {
-    public class SubdomainsPermutationGenerator : ISubdomainsResolver
+    public class SubdomainsPermutationEnumerator : ISubdomainsEnumerator
     {
         public IEnumerable<string> GetSubdomains(string domain)
         {

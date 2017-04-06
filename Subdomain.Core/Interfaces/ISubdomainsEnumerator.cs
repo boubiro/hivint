@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Subdomain.Core.Interfaces
 {
-    public interface ISubdomainsResolver
+    public interface ISubdomainsEnumerator
     {
         IEnumerable<string> GetSubdomains(string domain);
     }

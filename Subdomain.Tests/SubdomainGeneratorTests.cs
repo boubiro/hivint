@@ -13,7 +13,7 @@ namespace Subdomain.Tests
         [TestMethod]
         public void SubdomainGenerator_ReturnsExpectedSubdomains()
         {
-            ISubdomainsResolver subdomainGenerator = new SubdomainsPermutationGenerator();
+            ISubdomainsEnumerator subdomainGenerator = new SubdomainsPermutationEnumerator();
             IEnumerable<string> test=subdomainGenerator.GetSubdomains("yahoo.com");
             //26+26^2
             Assert.AreEqual(702, test.Count());

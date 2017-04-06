@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subdomain.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subdomain.Tests", "Subdomain.Tests\Subdomain.Tests.csproj", "{F41692BF-4C02-49F6-80B5-15E898B00953}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subdomain.Web", "Subdomain.Web\Subdomain.Web.csproj", "{44CFC435-9EAE-4B08-A36B-9166FD1F8846}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F41692BF-4C02-49F6-80B5-15E898B00953}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F41692BF-4C02-49F6-80B5-15E898B00953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F41692BF-4C02-49F6-80B5-15E898B00953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44CFC435-9EAE-4B08-A36B-9166FD1F8846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44CFC435-9EAE-4B08-A36B-9166FD1F8846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44CFC435-9EAE-4B08-A36B-9166FD1F8846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44CFC435-9EAE-4B08-A36B-9166FD1F8846}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
