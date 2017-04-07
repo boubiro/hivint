@@ -1,4 +1,5 @@
-﻿using Subdomain.Core.Interfaces;
+﻿using Subdomain.Core.Entities;
+using Subdomain.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,18 @@ namespace Subdomain.Infrastructure
 {
     public class SubdomainsPermutationEnumerator : ISubdomainsEnumerator
     {
-        public IEnumerable<string> GetSubdomains(string domain)
+        public IEnumerable<SubdomainEntity> GetSubdomains(string domain)
         {
-            List<string> subdomainList = new List<string>();
+            List<SubdomainEntity> subdomainList = new List<SubdomainEntity>();
             for(char sub = 'a'; sub <='z';sub++)
             {
-                subdomainList.Add(String.Concat(sub,".", domain));
+                subdomainList.Add(new SubdomainEntity(string.Concat(sub,".", domain)));
             }
             for (char sub1 = 'a'; sub1 <= 'z'; sub1++)
             {
                 for (char sub2 = 'a'; sub2 <= 'z'; sub2++)
                 {
-                    subdomainList.Add(string.Concat(sub1, sub2, ".", domain));
+                    subdomainList.Add(new SubdomainEntity(string.Concat(sub1, sub2, ".", domain)));
                 }
             }
             return subdomainList;

@@ -1,4 +1,5 @@
-﻿using Subdomain.Core.Interfaces;
+﻿using Subdomain.Core.Entities;
+using Subdomain.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +12,28 @@ namespace Subdomain.Web.Controllers
     [RoutePrefix("subdomain")]
     public class SubdomainController : ApiController
     {
-        private ISubdomainsEnumerator _subdomainResolver;
+        private ISubdomainsEnumerator _subdomainEnumerator;
+        private ISubdomainsIPResolver _subdomainIpResolver;
 
-        public SubdomainController(ISubdomainsEnumerator subdomainResolver)
+        public SubdomainController(ISubdomainsEnumerator subdomainResolver,ISubdomainsIPResolver subdomainIpResolver)
         {
-            this._subdomainResolver = subdomainResolver;
+            this._subdomainEnumerator = subdomainResolver;
+            this._subdomainIpResolver = subdomainIpResolver;
         }
 
         [Route("enumerate/{domain}")]
         [HttpGet]
         public IHttpActionResult Enumerate(string domain)
         {
-            var subdomains = _subdomainResolver.GetSubdomains(domain);
+            var subdomains = _subdomainEnumerator.GetSubdomains(domain);
+            return Ok(subdomains);
+        }
+
+        [Route("findIPAddresses")]
+        [HttpPost]
+        public IHttpActionResult Resolve([FromBody]SubdomainEntity[] subdomains)
+        {
+            _subdomainIpResolver.Resolve(subdomains);
             return Ok(subdomains);
         }
     }

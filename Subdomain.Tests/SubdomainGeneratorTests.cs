@@ -4,6 +4,7 @@ using Subdomain.Core.Interfaces;
 using Subdomain.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
+using Subdomain.Core.Entities;
 
 namespace Subdomain.Tests
 {
@@ -14,7 +15,7 @@ namespace Subdomain.Tests
         public void SubdomainGenerator_ReturnsExpectedSubdomains()
         {
             ISubdomainsEnumerator subdomainGenerator = new SubdomainsPermutationEnumerator();
-            IEnumerable<string> test=subdomainGenerator.GetSubdomains("yahoo.com");
+            IEnumerable<SubdomainEntity> test=subdomainGenerator.GetSubdomains("yahoo.com");
             //26+26^2
             Assert.AreEqual(702, test.Count());
         }

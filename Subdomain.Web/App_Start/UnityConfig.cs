@@ -17,7 +17,9 @@ namespace Subdomain.Web
 
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<ISubdomainsEnumerator, SubdomainsPermutationEnumerator>();
+            container.RegisterType<ISubdomainsIPResolver, SubdomainsIPResolver>();
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+            
         }
     }
 }

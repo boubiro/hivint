@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<h2>Subdomains Enumerator</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <input id="domain" type="text" class="form-control" placeholder="domain name(i.e. yahoo.com)" />
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-default" onclick="listSubdomains()">List Subdomains</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <table id="subdomainsTable" class="table table-responsive table-striped">
+             <thead>
+                 <tr>
+                     <th>
+                         Subdomain
+                     </th>
+                     <th>
+                         IP Address/s
+                     </th>
+                 </tr>
+             </thead>
+            <tbody>
+
+            </tbody>
+        </table> 
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        function listSubdomains() {
+            var domain = $('#domain').val();
+            var table = $('#subdomainsTable > tbody');
+            $.getJSON("/subdomain/enumerate/" + domain, function (data) {
+                var items = [];
+                $.each(data, function (key, val) {
+                    alert(val.Url);
+                    $table.append("<tr>"+val.Url+"<td></td><td></td></tr>")
+                    //items.push("<tr>"+val.Url+"<td></td><td></td></tr>");
+                });
+               
+            });
+        }
+    </script>
+    }
