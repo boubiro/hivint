@@ -13,6 +13,9 @@
     <div class="col-md-4">
         <button class="btn btn-default" onclick="listSubdomains()">List Subdomains</button>
     </div>
+    <div class="col-md-4">
+        <button class="btn btn-default" onclick="resolveSubdomains()">Resolve Subdomains</button>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-8">
@@ -36,17 +39,34 @@
 @section scripts
 {
     <script>
+        var retrievedData;
         function listSubdomains() {
             var domain = $('#domain').val();
-            var table = $('#subdomainsTable > tbody');
             $.getJSON("/subdomain/enumerate/" + domain, function (data) {
-                var items = [];
-                $.each(data, function (key, val) {
-                    alert(val.Url);
-                    $table.append("<tr>"+val.Url+"<td></td><td></td></tr>")
-                    //items.push("<tr>"+val.Url+"<td></td><td></td></tr>");
-                });
-               
+                retrievedData=data;
+                updateTable(data);
+            });
+        }
+
+        function resolveSubdomains() {
+            $.ajax({
+                type: 'POST',
+                url: '/subdomain/findIPAddresses',
+                data: JSON.stringify(retrievedData),
+                success: function (data) {
+                    updateTable(data);
+                },
+                contentType: "application/json",
+                dataType: 'json'
+            });
+        }
+
+        function updateTable(data)
+        {
+            var table = $('#subdomainsTable > tbody');
+            table.html("");
+            $.each(data, function (key, val) {
+                table.append("<tr><td>" + val.Url + "</td><td>" + val.IP + "</td></tr>");
             });
         }
     </script>

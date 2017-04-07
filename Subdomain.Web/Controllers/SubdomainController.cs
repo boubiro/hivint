@@ -33,6 +33,10 @@ namespace Subdomain.Web.Controllers
         [HttpPost]
         public IHttpActionResult Resolve([FromBody]SubdomainEntity[] subdomains)
         {
+            if (subdomains==null)
+            {
+                return BadRequest();
+            }
             _subdomainIpResolver.Resolve(subdomains);
             return Ok(subdomains);
         }
