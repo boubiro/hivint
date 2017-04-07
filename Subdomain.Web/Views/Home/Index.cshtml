@@ -23,6 +23,9 @@
              <thead>
                  <tr>
                      <th>
+                         #
+                     </th>
+                     <th>
                          Subdomain
                      </th>
                      <th>
@@ -64,9 +67,11 @@
         function updateTable(data)
         {
             var table = $('#subdomainsTable > tbody');
+            var serial = 1;
             table.html("");
             $.each(data, function (key, val) {
-                table.append("<tr><td>" + val.Url + "</td><td>" + val.IP + "</td></tr>");
+                table.append("<tr><td>"+serial+"</td><td>" + val.Url + "</td><td>" + val.IP + "</td></tr>");
+                serial++;
             });
         }
     </script>
