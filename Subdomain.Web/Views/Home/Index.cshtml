@@ -11,10 +11,10 @@
         <input id="domain" type="text" class="form-control" placeholder="domain name(i.e. yahoo.com)" />
     </div>
     <div class="col-md-4">
-        <button class="btn btn-default" onclick="listSubdomains()">List Subdomains</button>
+        <button class="btn btn-default" onclick="listSubdomains(this)">List Subdomains</button>
     </div>
     <div class="col-md-4">
-        <button class="btn btn-default" onclick="resolveSubdomains()">Resolve Subdomains</button>
+        <button class="btn btn-default" onclick="resolveSubdomains(this)">Resolve Subdomains</button>
     </div>
 </div>
 <div class="row">
@@ -43,21 +43,27 @@
 {
     <script>
         var retrievedData;
-        function listSubdomains() {
+        function listSubdomains(btn) {
+            var listButton = $(btn);
+            listButton.button("loading");
             var domain = $('#domain').val();
             $.getJSON("/subdomain/enumerate/" + domain, function (data) {
                 retrievedData=data;
                 updateTable(data);
+                listButton.button("reset");
             });
         }
 
-        function resolveSubdomains() {
+        function resolveSubdomains(btn) {
+            var resolveButton = $(btn);
+            resolveButton.button("loading");
             $.ajax({
                 type: 'POST',
                 url: '/subdomain/findIPAddresses',
                 data: JSON.stringify(retrievedData),
                 success: function (data) {
                     updateTable(data);
+                    resolveButton.button("reset");
                 },
                 contentType: "application/json",
                 dataType: 'json'
